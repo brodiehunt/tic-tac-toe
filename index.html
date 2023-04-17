@@ -9,6 +9,38 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <h1>Tic Tac Toe</h1>
+  <h1 class="game-title">Tic Tac Toe</h1>
+  <div class="new-game-form-container">
+    <h2 class="create-game-title">Create your players</h2>
+    <form onsubmit="runNewGame(event)" id="new-game-form">
+      <div class="form-control-container">
+        <label for="player-1-name">Player 1 Name</label>
+        <input class="form-control-input" id="player-1" name="player-1-name" type="text">
+      </div>
+
+      <div class="form-control-container">
+        <label for="player-2-name">Player 2 Name</label>
+        <input class="form-control-input" id="player-2" name="player2Name" type="text">
+      </div>
+      <button type="submit" class="btn start-game-btn">Start Game</button>
+    </form>
+  </div>
+  <div class="game-content-container">
+    <div class="player-1 info-container">
+      <h2>Player 1</h2>
+      <div class="player-1 player-name"></div>
+      <div class="player-1 player-wins">0</div>
+      <div class="wins-label">Wins</div>
+    </div>
+    <div class="grid-game-container">
+  
+    </div>
+    <div class="player-2 info-container">
+      <h2>Player 2</h2>
+      <div class="player-2 player-name"></div>
+      <div class="player-2 player-wins">0</div>
+      <div class="wins-label">Wins</div>
+    </div>
+  </div>
 </body>
 </html>
