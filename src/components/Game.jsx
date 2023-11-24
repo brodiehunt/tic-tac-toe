@@ -125,8 +125,8 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
             <span>TURN</span>
           </div>
           <div className="game-buttons">
-            <RestartButton handleClick={moveBack}/>
-            <RestartButton icon={iconRestart} handleClick={togglePauseGame}/>
+            <RestartButton imgClass="reverse" icon={iconRestart} handleClick={moveBack}/>
+            <RestartButton imgClass="normal" icon={iconRestart} handleClick={togglePauseGame}/>
           </div>
           
         </div>

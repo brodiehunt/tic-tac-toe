@@ -261,6 +261,10 @@ body {
   justify-content: center;
 }
 
+.restart-button .reverse {
+  transform: scaleX(-1);
+}
+
 /* GAME BOARD */
 
 .game-board {

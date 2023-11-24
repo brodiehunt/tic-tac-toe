@@ -1,12 +1,12 @@
 import iconRestart from '/src/assets/icon-restart.svg';
 
 
-function RestartButton({icon, handleClick}) {
+function RestartButton({icon, handleClick, imgClass}) {
     
     return (
     
         <button className="restart-button" onClick={handleClick}>
-            <img src={icon}></img>
+            <img className={imgClass} src={icon}></img>
         </button>
     )
 }
