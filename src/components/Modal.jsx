@@ -4,7 +4,7 @@ import iconX from '/src/assets/icon-x.svg';
 
 
 function Modal({playerInfo, gameResult, togglePauseGame, refreshGame, refreshEntireAppState}) {
-    console.log(playerInfo, gameResult);
+    
     const blue = {
         color: '#31C3BD'
     }

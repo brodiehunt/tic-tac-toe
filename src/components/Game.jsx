@@ -22,7 +22,6 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
     }
   
     function handlePlay(nextSquares, isWinner) {
-      console.log(isWinner)
       // Placing the square.
       const nextHistory = [...history.slice(0, currentMove + 1), nextSquares]
       setHistory(nextHistory);
@@ -31,10 +30,10 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
 
       if (isWinner) {
         const winner = determineWinner();
-        endSingleGame(winner);
+        return endSingleGame(winner);
       }
       if (currentMove === 8) {
-        endSingleGame(null)
+        return endSingleGame(null)
       }
     }
 
@@ -74,7 +73,6 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
         } else {
           winner = {...playerInfo.playerTwo, player: 'Player Two'}
         }
-        console.log('THe determined winner', winner)
         return winner;
     }
   
