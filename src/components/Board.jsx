@@ -24,7 +24,7 @@ function Board({xIsNext, squares, onPlay, isComputerTurn, returnRandomIndex, isP
     <>
         {squares.map((square, index) => {
             return (
-                <Square key={index} value={square} onSquareClick={() => handleClick(index)}/>
+                <Square key={index} value={square} xIsNext={xIsNext} onSquareClick={() => handleClick(index)}/>
             )
         })}
     </>

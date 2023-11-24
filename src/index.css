@@ -282,6 +282,18 @@ body {
   box-shadow: 0px -8px 0px 0px #10212A inset;
 }
 
+.square.empty.x:hover {
+  background-image: url("/src/assets/icon-x-outline.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.square.empty.o:hover {
+  background-image: url("/src/assets/icon-o-outline.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 /* INFO CONTAINERS */
 
 .game-info {

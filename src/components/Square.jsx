@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import iconO from '/src/assets/icon-o.svg';
 import iconX from '/src/assets/icon-x.svg';
-function Square({value, onSquareClick}) {
+function Square({value, onSquareClick, xIsNext}) {
     
     if (value) {
         if (value === 'X') {
@@ -10,9 +10,17 @@ function Square({value, onSquareClick}) {
             value = iconO;
         }
     }
+    function getClass(val) {
+        if (!val && xIsNext) {
+            return 'square empty x'
+        } else if (!val && !xIsNext) {
+            return 'square empty o'
+        } 
+        return 'square';
+    }
     
     return (
-        <button className="square" onClick={onSquareClick}>
+        <button className={getClass(value)} onClick={onSquareClick}>
             {value ? <img src={value}></img> : value }
         </button>
     )
