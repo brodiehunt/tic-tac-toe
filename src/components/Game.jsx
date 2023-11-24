@@ -16,13 +16,12 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
     const [gamePaused, setGamePaused] = useState(false);
     const [gameResult, setGameResult] = useState(null);
     const currentSquares = history[currentMove];
-
+    
     function togglePauseGame() {
       setGamePaused(!gamePaused);
     }
   
     function handlePlay(nextSquares, isWinner) {
-      // Placing the square.
       const nextHistory = [...history.slice(0, currentMove + 1), nextSquares]
       setHistory(nextHistory);
       setCurrentMove(nextHistory.length - 1);
@@ -84,6 +83,30 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
       setXIsNext(!xIsNext);
     }
 
+    function isComputerTurn() {
+      if (isPlayingComputer && xIsNext && playerInfo.playerTwo.piece === 'X') {
+        return true
+      }
+      if (isPlayingComputer && !xIsNext && playerInfo.playerTwo.piece === 'O') {
+        return true
+      }
+      return false;
+    }
+
+    function returnRandomIndex() {
+        // Find all index with val null
+        let nullIndexes = history[history.length - 1].map((item, index) => {
+          // Transform each item to its index if it's null, otherwise null
+          return item === null ? index : null;
+        }).filter(index => index !== null); // Keep only non-null indexes
+        // choose random index from nullIndexes arrray;
+        const randomIndex = Math.floor(Math.random() * (nullIndexes.length -1))
+        const indexToSimulateClick = nullIndexes[randomIndex];
+        return indexToSimulateClick;
+    }
+
+   
+
   
     return (
 
@@ -108,7 +131,14 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
           
         </div>
         <div className="game-board">
-          <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
+          <Board 
+          xIsNext={xIsNext} 
+          squares={currentSquares} 
+          onPlay={handlePlay}
+          isComputerTurn={isComputerTurn}
+          returnRandomIndex={returnRandomIndex}
+          isPlayingComputer={isPlayingComputer}
+          />
         </div>
         <GameInfo isPlayingComputer={isPlayingComputer} playerInfo={playerInfo}/>
         

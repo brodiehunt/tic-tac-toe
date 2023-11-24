@@ -1,16 +1,23 @@
 import Square from '/src/components/Square';
 
 
-function Board({xIsNext, squares, onPlay}) {
+function Board({xIsNext, squares, onPlay, isComputerTurn, returnRandomIndex, isPlayingComputer}) {
 
   function handleClick(i) {
     if (squares[i] || calculateWinner(squares)) {
-      console.log('Calculate winner handle clik', calculateWinner(squares))
       return;
     }
     const nextSquares = squares.slice();
     xIsNext ? nextSquares[i] = 'X' : nextSquares[i] = '0';
     onPlay(nextSquares, calculateWinner(nextSquares));
+  }
+
+  if (isPlayingComputer && isComputerTurn()) {
+    // Delay state change of game until after board renders.
+    setTimeout(() => {
+      const randomComputerMove = returnRandomIndex();
+      handleClick(randomComputerMove);
+    }, 1000);
   }
   
   return (
