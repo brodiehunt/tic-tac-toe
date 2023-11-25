@@ -5,41 +5,39 @@ import Game from './components/Game';
 import Menu from './components/Menu';
 function App() {
   const players = {
-    playerOne: {
-      piece: 'X',
-      wins: 0
-    },
-    playerTwo: {
-      piece: 'O',
-      wins: 0
-    },
+    playerOne: { piece: 'X', wins: 0 },
+    playerTwo: { piece: 'O', wins: 0 },
     ties: 0
   }
   const [playersInfo, setPlayersInfo] = useState(players);
   const [isPlayingComputer, setIsPlayingComputer] = useState(false);
   const [seriesInPlay, setSeriesInPlay] = useState(false);
 
+  // Refresh state to original - passed to Game - called in refreshEntireAppState
   function refreshAppState() {
     setPlayersInfo(players);
     setIsPlayingComputer(false);
     setSeriesInPlay(false);
   }
 
+  // Switch state of player peice - toggled in menu component by checkbox
   function handleChangePlayerPiece() {
+    const { playerOne, playerTwo } = playersInfo;
     const newPlayerInfo = {
       playerOne: {
-        piece: playersInfo.playerTwo.piece,
-        wins: playersInfo.playerOne.wins
+        piece: playerTwo.piece,
+        wins: playerOne.wins
       },
       playerTwo: {
-        piece: playersInfo.playerOne.piece,
-        wins: playersInfo.playerTwo.wins
+        piece: playerOne.piece,
+        wins: playerTwo.wins
       },
       ties: 0
     }
     setPlayersInfo(newPlayerInfo);
   }
 
+  // Update player scores when game has finished. - called in endSingleGame
   function updatePlayerScores(result) {
     const { playerOne, playerTwo, ties} = playersInfo;
     let newPlayerInfo;
@@ -66,38 +64,35 @@ function App() {
     setPlayersInfo(newPlayerInfo);
   }
 
+  // Menu button new game with cpu callback
   function newGameCpuClick() {
     setIsPlayingComputer(true);
     setSeriesInPlay(true);
   }
 
+  // Menu button new game with other player callback
   function newGamePlayerClick() {
     setSeriesInPlay(true)
   }
 
-  if (seriesInPlay) {
-    return (
-      <div className="main-container">
+  return (
+    <div className="main-container">
+      {seriesInPlay ? 
         <Game 
-        playerInfo={playersInfo}
-        isPlayingComputer={isPlayingComputer} 
-        updatePlayerScores={updatePlayerScores}
-        refreshAppState={refreshAppState}
-        />
-      </div>
-    )
-  } else {
-    return (
-      <div className="main-container">
+          playerInfo={playersInfo}
+          isPlayingComputer={isPlayingComputer} 
+          updatePlayerScores={updatePlayerScores}
+          refreshAppState={refreshAppState}
+        /> : 
         <Menu 
-        newGameCpu={newGameCpuClick}
-        newGamePlayer={newGamePlayerClick}
-        handleChangePlayerPiece={handleChangePlayerPiece} 
-        playerOne={playersInfo.playerOne}/>
-      </div>
-      
-    )
-  }
+          newGameCpu={newGameCpuClick}
+          newGamePlayer={newGamePlayerClick}
+          handleChangePlayerPiece={handleChangePlayerPiece} 
+          playerOne={playersInfo.playerOne}
+        />
+        }
+    </div>
+  )
 }
 
 export default App

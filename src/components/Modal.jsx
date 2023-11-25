@@ -1,9 +1,9 @@
-import ModalButton from './ModalButton';
+import Button from './Button';
 import iconO from '/src/assets/icon-o.svg';
 import iconX from '/src/assets/icon-x.svg';
 
 
-function Modal({playerInfo, gameResult, togglePauseGame, refreshGame, refreshEntireAppState}) {
+function Modal({ gameResult, togglePauseGame, refreshGame, refreshEntireAppState}) {
     
     const blue = {
         color: '#31C3BD'
@@ -11,7 +11,7 @@ function Modal({playerInfo, gameResult, togglePauseGame, refreshGame, refreshEnt
     const orange = {
         color: '#F2B137'
     }
-
+    // If the game is paused manually or the result is a draw
     if (!gameResult || gameResult.result === 'draw') {
         return (
             <div className="modal">
@@ -21,12 +21,12 @@ function Modal({playerInfo, gameResult, togglePauseGame, refreshGame, refreshEnt
                     </div>
                     <div className="modal-buttons">
                         {!gameResult ? 
-                        (<ModalButton className="btn quit" handleClick={togglePauseGame} value="NO, CANCEL"/>) :
-                        (<ModalButton className="btn quit" handleClick={refreshEntireAppState} value="QUIT"/>)
+                        (<Button className="btn quit" handleClick={togglePauseGame} value="NO, CANCEL"/>) :
+                        (<Button className="btn quit" handleClick={refreshEntireAppState} value="QUIT"/>)
                         }
                         {!gameResult ? 
-                        (<ModalButton className="btn next" handleClick={refreshGame} value="YES, RESTART"/>) :
-                        (<ModalButton className="btn next" handleClick={refreshGame} value="NEXT ROUND"/>)
+                        (<Button className="btn next" handleClick={refreshGame} value="YES, RESTART"/>) :
+                        (<Button className="btn next" handleClick={refreshGame} value="NEXT ROUND"/>)
                         }
                         
                         
@@ -35,6 +35,7 @@ function Modal({playerInfo, gameResult, togglePauseGame, refreshGame, refreshEnt
             </div>
         )
     } else {
+        // If the result is a win or loss
         return (
             <div className="modal">
                 <div className="modal-content">
@@ -50,8 +51,8 @@ function Modal({playerInfo, gameResult, togglePauseGame, refreshGame, refreshEnt
                         <div className="who-wins" style={gameResult.piece == 'X' ? blue : orange}>TAKES THE ROUND</div>
                     </div>
                     <div className="modal-buttons">
-                        <ModalButton className="btn quit" handleClick={refreshEntireAppState} value="QUIT"/>
-                        <ModalButton className="btn next" handleClick={refreshGame} value="NEXT ROUND"/>
+                        <Button className="btn quit" handleClick={refreshEntireAppState} value="QUIT"/>
+                        <Button className="btn next" handleClick={refreshGame} value="NEXT ROUND"/>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import Logo from '/src/components/Logo';
 import iconO from '/src/assets/icon-o.svg'
 import iconX from '/src/assets/icon-x.svg'
-import MenuButton from '/src/components/MenuButton'
+import Button from '/src/components/Button'
 function Menu({handleChangePlayerPiece, newGameCpu, newGamePlayer, playerOne}) {
 
 
@@ -26,8 +26,8 @@ function Menu({handleChangePlayerPiece, newGameCpu, newGamePlayer, playerOne}) {
                 </div>
                 <p className="hint">Remember: X goes first</p>
             </div>
-            <MenuButton handleClick={newGameCpu} className="btn menu secondary" value="NEW GAME (VS CPU)"/>
-            <MenuButton handleClick={newGamePlayer} className="btn menu primary" value="NEW GAME (VS PLAYER)"/>
+            <Button handleClick={newGameCpu} className="btn menu secondary" value="NEW GAME (VS CPU)"/>
+            <Button handleClick={newGamePlayer} className="btn menu primary" value="NEW GAME (VS PLAYER)"/>
         </div>
     )
 }

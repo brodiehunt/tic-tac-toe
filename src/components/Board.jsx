@@ -3,6 +3,8 @@ import {useState} from 'react';
 
 function Board({xIsNext, squares, onPlay, isComputerTurn, returnRandomIndex, isPlayingComputer, gamePaused}) {
   const [winningSquares, setWinningSquares] = useState([]);
+
+  // Callback function for when board squares are clicked. 
   function handleClick(i) {
     if (squares[i] || calculateWinner(squares)) {
       return;
@@ -12,6 +14,8 @@ function Board({xIsNext, squares, onPlay, isComputerTurn, returnRandomIndex, isP
     onPlay(nextSquares, calculateWinner(nextSquares));
   }
 
+  // Checks if there is a winning combination after each move.
+  // Changes board state (to render animation of winning combo) - state necessary??
   function calculateWinner(squares) {
     const lines = [
       [0, 1, 2],
@@ -34,14 +38,15 @@ function Board({xIsNext, squares, onPlay, isComputerTurn, returnRandomIndex, isP
     return null;
   }
 
+  // Take computers turn - setTimeout pushes state change to after board component renders.
+  // this is because handle click function changes board state (cant change state while rendering)
   if (!gamePaused && isPlayingComputer && isComputerTurn()) {
-    // Delay state change of game until after board renders.
     setTimeout(() => {
       const randomComputerMove = returnRandomIndex();
       handleClick(randomComputerMove);
     }, 1000);
   }
-  
+
   return (
     <>
         {squares.map((square, index) => {

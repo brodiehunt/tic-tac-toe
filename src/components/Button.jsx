@@ -1,8 +1,8 @@
-function MenuButton({value, handleClick, className}) {
+function Button({value, handleClick, className}) {
     
     return (
         <button className={className} onClick={handleClick}>{value}</button>
     )
 }
 
-export default MenuButton;
+export default Button;
