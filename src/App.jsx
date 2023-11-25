@@ -41,42 +41,26 @@ function App() {
   }
 
   function updatePlayerScores(result) {
+    const { playerOne, playerTwo, ties} = playersInfo;
     let newPlayerInfo;
+
     if (result === 'draw') {
       newPlayerInfo = {
-        playerOne: {
-          piece: playersInfo.playerOne.piece,
-          wins: playersInfo.playerOne.wins
-        },
-        playerTwo: {
-          piece: playersInfo.playerTwo.piece,
-          wins: playersInfo.playerTwo.wins
-        },
-        ties: playersInfo.ties + 1
+        playerOne,
+        playerTwo,
+        ties: ties + 1
       }
-    } else if (result.piece == playersInfo.playerOne.piece) {
+    } else if (result.piece == playerOne.piece) {
       newPlayerInfo = {
-        playerOne: {
-          piece: playersInfo.playerOne.piece,
-          wins: playersInfo.playerOne.wins + 1
-        },
-        playerTwo: {
-          piece: playersInfo.playerTwo.piece,
-          wins: playersInfo.playerTwo.wins
-        },
-        ties: playersInfo.ties
-      }
+        playerOne: { ...playerOne, wins: playerOne.wins + 1} ,
+        playerTwo,
+        ties
+      };
     } else {
       newPlayerInfo = {
-        playerOne: {
-          piece: playersInfo.playerOne.piece,
-          wins: playersInfo.playerOne.wins
-        },
-        playerTwo: {
-          piece: playersInfo.playerTwo.piece,
-          wins: playersInfo.playerTwo.wins + 1
-        },
-        ties: playersInfo.ties
+        playerOne,
+        playerTwo: { ...playerTwo, wins: playerTwo.wins + 1 },
+        ties
       }
     }
     setPlayersInfo(newPlayerInfo);
