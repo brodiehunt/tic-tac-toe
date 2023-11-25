@@ -12,10 +12,11 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
 
     const [xIsNext, setXIsNext] = useState(true);
     const [history, setHistory] = useState([Array(9).fill(null)]);
-    const [currentMove, setCurrentMove] = useState(0);
     const [gamePaused, setGamePaused] = useState(false);
     const [gameResult, setGameResult] = useState(null);
+    const currentMove = history.length - 1;
     const currentSquares = history[currentMove];
+  
     
     function togglePauseGame() {
       setGamePaused(!gamePaused);
@@ -24,7 +25,6 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
     function handlePlay(nextSquares, isWinner) {
       const nextHistory = [...history.slice(0, currentMove + 1), nextSquares]
       setHistory(nextHistory);
-      setCurrentMove(nextHistory.length - 1);
       setXIsNext(!xIsNext);
 
       if (isWinner) {
@@ -44,7 +44,6 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
     function refreshGame() {
       setXIsNext(true);
       setHistory([Array(9).fill(null)]);
-      setCurrentMove(0);
       setGamePaused(false);
       setGameResult(null);
     }
@@ -82,7 +81,6 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
       if (currentMove === 0) {
         return;
       }
-      setCurrentMove(currentMove - 1);
       setXIsNext(!xIsNext);
     }
 
