@@ -59,8 +59,11 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
         result.result = 'draw';
         updatePlayerScores('draw');
       }
+      setTimeout(() => {
         setGamePaused(true);
-        setGameResult(result) 
+        setGameResult(result);
+      }, 500)
+         
     }
 
     function determineWinner() {
@@ -138,6 +141,7 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
           isComputerTurn={isComputerTurn}
           returnRandomIndex={returnRandomIndex}
           isPlayingComputer={isPlayingComputer}
+          gamePaused={gamePaused}
           />
         </div>
         <GameInfo isPlayingComputer={isPlayingComputer} playerInfo={playerInfo}/>
