@@ -10,7 +10,7 @@ function Board({xIsNext, squares, onPlay, isComputerTurn, returnRandomIndex, isP
       return;
     }
     const nextSquares = squares.slice();
-    xIsNext ? nextSquares[i] = 'X' : nextSquares[i] = '0';
+    xIsNext ? nextSquares[i] = 'X' : nextSquares[i] = 'O';
     onPlay(nextSquares, calculateWinner(nextSquares));
   }
 

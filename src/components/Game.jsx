@@ -117,6 +117,84 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
         return indexToSimulateClick;
     }
 
+    // Calculate best move here... what will I need?
+    // We will need the most recent history. -- history[history.length -1]
+    //
+    // What are we looking for? -- 
+    // 1. An immediate winner (any winning combinations for the computers square)
+    // 2. if no immediate winner, is can the other player make a move next that will win them the game (defensive move)
+    // 3. if there is no move that the other player will win with in the next move -- find the best move. (potential winning combinations);
+    
+    
+    function smartAiMove() {
+      // console.log('current board state', currentSquares);
+      const computerPiece = playerInfo.playerTwo.piece;
+      const playerPiece = playerInfo.playerOne.piece;
+      const lines = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+      ];
+      const winningMove = findEndGameMove(computerPiece, lines);
+      if (winningMove !== null) {
+        return winningMove;
+      }
+      const defensiveMove = findEndGameMove(playerPiece, lines);
+      if (defensiveMove !== null) {
+        return defensiveMove;
+      }
+      const premiumMove = findOptimumMove();
+      if (premiumMove !== null) {
+        return premiumMove;
+      }
+      return returnRandomIndex();
+
+    }
+
+    function findOptimumMove() {
+      // take preference for the corner or center square
+      if (currentSquares[4] === null) {
+        return 4;
+      } else if (currentSquares[0] === null) {
+        return 0;
+      } else if (currentSquares[2] === null) {
+        return 2;
+      } else if (currentSquares[6] === null) {
+        return 6;
+      } else if (currentSquares[8] === null) {
+        return 8
+      } else {
+        return null;
+      }
+    }
+
+    function findEndGameMove(piece, lines) {
+      for (let i = 0; i < lines.length; i++) {
+        let nullVals = [];
+        let pieceVals = [];
+        for (let j = 0; j < lines[i].length; j++) {
+          let squareVal = currentSquares[lines[i][j]];
+          if (squareVal === piece) {
+            pieceVals.push(j);
+          } else if (squareVal === null) {
+            nullVals.push(lines[i][j]);
+          } else {
+            break;
+          }
+        }
+        if (pieceVals.length === 2 && nullVals.length === 1) {
+          return nullVals[0];
+        }
+      }
+      return null;
+    }
+    
+
    
 
   
@@ -148,7 +226,7 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
           squares={currentSquares} 
           onPlay={handlePlay}
           isComputerTurn={isComputerTurn}
-          returnRandomIndex={returnRandomIndex}
+          returnRandomIndex={smartAiMove}
           isPlayingComputer={isPlayingComputer}
           gamePaused={gamePaused}
           />
