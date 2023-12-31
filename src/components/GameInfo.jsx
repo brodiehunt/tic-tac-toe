@@ -1,6 +1,7 @@
 
 function GameInfo({isPlayingComputer, playerInfo}) {
     const {playerOne, playerTwo, ties} = playerInfo;
+    
     return (
         <div className="game-info">
             <div className="x-container container">

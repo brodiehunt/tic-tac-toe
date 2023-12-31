@@ -2,6 +2,7 @@ import Logo from '/src/components/Logo';
 import iconO from '/src/assets/icon-o.svg'
 import iconX from '/src/assets/icon-x.svg'
 import Button from '/src/components/Button'
+
 function Menu({handleChangePlayerPiece, newGameCpu, newGamePlayer, playerOne}) {
 
 

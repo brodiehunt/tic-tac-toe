@@ -16,7 +16,7 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
     const [gameResult, setGameResult] = useState(null);
     const currentMove = history.length - 1;
     const currentSquares = history[currentMove];
-  
+    
     // Toggles Modal (when game finished or user presses restart button on gameboard)
     function togglePauseGame() {
       setGamePaused(!gamePaused);
@@ -202,11 +202,11 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
 
       <div className="game">
         {gamePaused && <Modal 
-        playerInfo={playerInfo} 
-        gameResult={gameResult}
-        togglePauseGame={togglePauseGame}
-        refreshGame={refreshGame}
-        refreshEntireAppState={refreshEntireAppState}
+          playerInfo={playerInfo} 
+          gameResult={gameResult}
+          togglePauseGame={togglePauseGame}
+          refreshGame={refreshGame}
+          refreshEntireAppState={refreshEntireAppState}
         />}
         <div className="top-container">
           <Logo />
@@ -215,23 +215,34 @@ function Game({playerInfo, isPlayingComputer, updatePlayerScores, refreshAppStat
             <span>TURN</span>
           </div>
           <div className="game-buttons">
-            <RestartButton imgClass="reverse" icon={iconRestart} handleClick={moveBack}/>
-            <RestartButton imgClass="normal" icon={iconRestart} handleClick={togglePauseGame}/>
+            <RestartButton 
+              imgClass="reverse" 
+              icon={iconRestart} 
+              handleClick={moveBack}
+            />
+            <RestartButton 
+              imgClass="normal" 
+              icon={iconRestart} 
+              handleClick={togglePauseGame}
+            />
           </div>
           
         </div>
         <div className="game-board">
           <Board 
-          xIsNext={xIsNext} 
-          squares={currentSquares} 
-          onPlay={handlePlay}
-          isComputerTurn={isComputerTurn}
-          returnRandomIndex={smartAiMove}
-          isPlayingComputer={isPlayingComputer}
-          gamePaused={gamePaused}
+            xIsNext={xIsNext} 
+            squares={currentSquares} 
+            onPlay={handlePlay}
+            isComputerTurn={isComputerTurn}
+            returnRandomIndex={smartAiMove}
+            isPlayingComputer={isPlayingComputer}
+            gamePaused={gamePaused}
           />
         </div>
-        <GameInfo isPlayingComputer={isPlayingComputer} playerInfo={playerInfo}/>
+        <GameInfo 
+          isPlayingComputer={isPlayingComputer} 
+          playerInfo={playerInfo}
+        />
         
       </div>
     )

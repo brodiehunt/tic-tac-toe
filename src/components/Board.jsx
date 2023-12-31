@@ -1,9 +1,15 @@
 import Square from '/src/components/Square';
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 
 function Board({xIsNext, squares, onPlay, isComputerTurn, returnRandomIndex, isPlayingComputer, gamePaused}) {
   const [winningSquares, setWinningSquares] = useState([]);
 
+  // Clear the timeout if user double clicks reverse move (computer mode)
+  const timeoutRef = useRef(null);
+  if (timeoutRef.current) {
+    clearTimeout(timeoutRef.current);
+  }
+  
   // Callback function for when board squares are clicked. 
   function handleClick(i) {
     if (squares[i] || calculateWinner(squares)) {
@@ -41,7 +47,8 @@ function Board({xIsNext, squares, onPlay, isComputerTurn, returnRandomIndex, isP
   // Take computers turn - setTimeout pushes state change to after board component renders.
   // this is because handle click function changes board state (cant change state while rendering)
   if (!gamePaused && isPlayingComputer && isComputerTurn()) {
-    setTimeout(() => {
+    
+    timeoutRef.current = setTimeout(() => {
       const randomComputerMove = returnRandomIndex();
       handleClick(randomComputerMove);
     }, 1000);

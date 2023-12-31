@@ -21,7 +21,10 @@ function Square({value, onSquareClick, xIsNext, animateClass}) {
     }
     
     return (
-        <button className={getClass(value)} onClick={onSquareClick}>
+        <button 
+            className={getClass(value)} 
+            onClick={onSquareClick}
+        >
             {value ? <img className={animateClass} src={value}></img> : value }
         </button>
     )

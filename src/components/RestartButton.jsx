@@ -1,5 +1,3 @@
-import iconRestart from '/src/assets/icon-restart.svg';
-
 
 function RestartButton({icon, handleClick, imgClass}) {
     
