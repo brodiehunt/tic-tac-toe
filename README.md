@@ -1,16 +1,41 @@
 # Tic Tac Toe - React Application
+
 ## - By Brodie Hunt
+
 This is a simple Tic Tac Toe application built using the React library.
 It is an extension of the tutorial provided in the react documentation and built as a solution to the [Tic Tac Toe challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v).
 
+## Links
+
+- Live Site URL: [Tic Tac Toe](https://brodiehunt-tic-tac-toe.netlify.app/)
 
 ## Table of contents
+
 - [Installation](#installation)
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
   - [Links](#links)
 
+## Installation
+
+1. Clone this repository:
+
+```
+  https://github.com/brodiehunt/tic-tac-toe.git
+```
+
+2. Install the dependancies
+
+```
+  npm install
+```
+
+3. Run the application
+
+```
+  npm run dev
+```
 
 ## Overview
 
@@ -24,12 +49,10 @@ Users should be able to:
 - **Bonus 2**: Instead of having the computer randomly make their moves, try making it clever so it’s proactive in blocking your moves and trying to win
 
 ### Screenshot
+
 ![Game Menu](./docs/menu.png)
 ![Game in progress](./docs/gameboard.png)
 ![Game Complete](./docs/completeBanner.png)
-
-### Links
-- Live Site URL: [Tic Tac Toe](https://brodiehunt-tic-tac-toe.netlify.app/)
 
 ## My process
 
@@ -41,10 +64,4 @@ Users should be able to:
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 
-
 ### What I learned
-
-
-
-
-
